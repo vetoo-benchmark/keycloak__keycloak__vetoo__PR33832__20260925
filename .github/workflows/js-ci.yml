@@ -28,7 +28,7 @@ jobs:
     outputs:
       js-ci: ${{ steps.conditional.outputs.js }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - id: conditional
         uses: ./.github/actions/conditional
@@ -41,7 +41,7 @@ jobs:
     if: needs.conditional.outputs.js-ci == 'true'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Build Keycloak
         uses: ./.github/actions/build-keycloak
@@ -64,7 +64,7 @@ jobs:
     env:
       WORKSPACE: "@keycloak/keycloak-admin-client"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: ./.github/actions/pnpm-setup
 
@@ -80,7 +80,7 @@ jobs:
     env:
       WORKSPACE: "@keycloak/keycloak-ui-shared"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: ./.github/actions/pnpm-setup
 
@@ -96,7 +96,7 @@ jobs:
     env:
       WORKSPACE: "@keycloak/keycloak-account-ui"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: ./.github/actions/pnpm-setup
 
@@ -112,7 +112,7 @@ jobs:
     env:
       WORKSPACE: keycloak-admin-ui
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: ./.github/actions/pnpm-setup
 
@@ -134,7 +134,7 @@ jobs:
     env:
       WORKSPACE: "@keycloak/keycloak-account-ui"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: ./.github/actions/pnpm-setup
 
@@ -210,7 +210,7 @@ jobs:
           - browser: ${{ github.event_name != 'workflow_dispatch' && 'firefox' || '' }}
       fail-fast: false
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install Google Chrome
         if: matrix.browser == 'chrome'
@@ -292,7 +292,7 @@ jobs:
       - admin-ui-e2e
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: ./.github/actions/status-check
         with:
           jobs: ${{ toJSON(needs) }}
